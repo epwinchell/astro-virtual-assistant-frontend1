@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: astro-virtual-assistant-frontend
+objects:
+  - apiVersion: cloud.redhat.com/v1alpha1
+    kind: Frontend
+    metadata:
+      name: virtual-assistant
+    spec:
+      envName: ${ENV_NAME}
+      title: Virtual assistant
+      deploymentRepo: TBD
+      frontend:
+        paths:
+          - /apps/virtual-assistant
+      image: ${IMAGE}:${IMAGE_TAG}
+      navItems: 
+      - appId: virtual-assistant
+        title: Virtual assistant
+        href: "/staging/virtual-assistant"
+      module:
+        manifestLocation: "/apps/virtual-assistant/fed-mods.json"
+        modules:
+          - id: "virtual-assistant"
+            module: "./RootApp"
+            routes: 
+            - pathname: "/staging/virtual-assistant"
+
+parameters:
+  - name: ENV_NAME
+    required: true
+  - name: IMAGE_TAG
+    required: true
+  - name: IMAGE
+    value: TBD
