@@ -82,6 +82,24 @@ const SamplePage = () => {
               </SplitItem>
             </Split>
 
+            <div className="astro-options">
+              <Label>
+                OpenShift
+              </Label>
+              <Label>
+                Ansible
+              </Label>
+              <Label>
+                RHEL
+              </Label>
+              <Label>
+                Cloud Native Development
+              </Label>
+              <Label>
+                Console Services
+              </Label>
+            </div>
+
             <Split className="astro-user">
               <SplitItem className="astro-user-dialog">
                 <div className="bubble bubble-user bubble-bottom-user">
