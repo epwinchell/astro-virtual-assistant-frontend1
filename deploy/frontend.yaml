@@ -6,26 +6,26 @@ objects:
   - apiVersion: cloud.redhat.com/v1alpha1
     kind: Frontend
     metadata:
-      name: virtual-assistant
+      name: virtualAssistant
     spec:
       envName: ${ENV_NAME}
       title: Virtual assistant
       deploymentRepo: TBD
       frontend:
         paths:
-          - /apps/virtual-assistant
+          - /apps/virtualAssistant
       image: ${IMAGE}:${IMAGE_TAG}
-      navItems: 
-      - appId: virtual-assistant
+      navItems:
+      - appId: virtualAssistant
         title: Virtual assistant
-        href: "/staging/virtual-assistant"
+        href: "/staging/virtualAssistant"
       module:
-        manifestLocation: "/apps/virtual-assistant/fed-mods.json"
+        manifestLocation: "/apps/virtualAssistant/fed-mods.json"
         modules:
-          - id: "virtual-assistant"
+          - id: "virtualAssistant"
             module: "./RootApp"
-            routes: 
-            - pathname: "/staging/virtual-assistant"
+            routes:
+            - pathname: "/staging/virtualAssistant"
 
 parameters:
   - name: ENV_NAME

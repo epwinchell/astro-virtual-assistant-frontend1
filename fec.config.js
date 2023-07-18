@@ -1,5 +1,5 @@
 module.exports = {
-  appUrl: ['/staging/virtual-assistant'],
+  appUrl: ['/staging/virtualAssistant'],
   debug: true,
   useProxy: true,
   proxyVerbose: true,
