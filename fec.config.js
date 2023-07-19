@@ -1,5 +1,5 @@
 module.exports = {
-  appUrl: ['/staging/virtualAssistant'],
+  appUrl: ['/staging/virtual-assistant'],
   debug: true,
   useProxy: true,
   proxyVerbose: true,
@@ -11,5 +11,6 @@ module.exports = {
    * Add additional webpack plugins
    */
   plugins: [],
+  sassPrefix: '.virtualAssistant',
   _unstableHotReload: process.env.HOT === 'true',
 };
