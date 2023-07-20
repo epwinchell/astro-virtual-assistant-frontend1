@@ -24,6 +24,14 @@ sudo npm run patch:hosts
 
 Update `config/dev.webpack.config.js` according to your application URL. [Read more](https://github.com/RedHatInsights/frontend-components/tree/master/packages/config#useproxy).
 
+## Running with local backend
+
+Start the backend locally by running Rasa (`make run`) and Rasa actions (`make run-actions`). After that start the frontend with `USE_LOCAL_RASA` env set to anything other than an empty string:
+
+```bash
+USE_LOCAL_RASA=1 npm run start
+```
+
 ### Testing
 
 `npm run verify` will run `npm run lint` (eslint) and `npm test` (Jest)
