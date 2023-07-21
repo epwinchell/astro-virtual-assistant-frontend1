@@ -21,10 +21,11 @@ import {
   TextInput,
 } from '@patternfly/react-core';
 
-import RedoIcon from '@patternfly/react-icons/dist/esm/icons/redo-icon';
 import TimesIcon from '@patternfly/react-icons/dist/esm/icons/times-icon';
 import PlaneIcon from '@patternfly/react-icons/dist/esm/icons/paper-plane-icon';
 import MinimizeIcon from '@patternfly/react-icons/dist/esm/icons/window-minimize-icon';
+import UserIcon from '@patternfly/react-icons/dist/esm/icons/outlined-user-circle-icon';
+import RedHatIcon from '@patternfly/react-icons/dist/js/icons/redhat-icon';
 
 import './sample-page.scss';
 import { postTalk } from '../../api/PostTalk';
@@ -67,11 +68,16 @@ const VirtualAssistantMessage: FunctionComponent<AssistantMessageProps> = ({ mes
   return (
     <>
       <Split className="astro-chatbot">
+        <SplitItem className="astro-user-icon">
+          <Icon size="lg" className="pf-u-mr-sm">
+            <RedHatIcon />
+          </Icon>
+        </SplitItem>
         <SplitItem className="astro-chatbot-dialog bubble">{message.content}</SplitItem>
       </Split>
 
       {message.options && (
-        <div className="astro-options">
+        <div className="astro-options pf-u-pl-xl">
           {message.options.map((option) => (
             <Label
               key={option}
@@ -95,6 +101,11 @@ const UserAssistantMessage: FunctionComponent<MessageProps<UserMessage>> = ({ me
     <>
       <Split className="astro-user">
         <SplitItem className="astro-user-dialog bubble bubble-user">{message.content}</SplitItem>
+        <SplitItem className="astro-user-icon">
+          <Icon size="lg" className="pf-u-ml-sm">
+            <UserIcon />
+          </Icon>
+        </SplitItem>
       </Split>
     </>
   );
@@ -227,9 +238,6 @@ const SamplePage = () => {
                 aria-label=""
               />
               <InputGroupText id="username">
-                <Button variant="plain" className="pf-u-px-sm">
-                  <RedoIcon />
-                </Button>
                 <Button onClick={() => ask()} variant="plain" className="pf-u-px-sm">
                   <PlaneIcon />
                 </Button>
