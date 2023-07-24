@@ -4,6 +4,9 @@
   overflow: hidden;
   &__body {
     overflow-y: scroll;
+    &::-webkit-scrollbar{
+      display: none;
+    }
     .astro-chatbot {
       align-items: flex-end;
       margin: 0 40px 12px 0;
