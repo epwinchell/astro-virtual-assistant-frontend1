@@ -1,8 +1,12 @@
 import axiosInstance from '@redhat-cloud-services/frontend-components-utilities/interceptors/interceptors';
 
-interface PostTalkResponse {
+export interface PostTalkResponse {
   recipient_id: number;
   text: string;
+  buttons?: Array<{
+    title: string;
+    payload: string;
+  }>;
 }
 
 export const postTalk = async (message: string) => {
