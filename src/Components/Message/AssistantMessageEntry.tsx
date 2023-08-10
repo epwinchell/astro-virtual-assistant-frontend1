@@ -18,8 +18,8 @@ export const AssistantMessageEntry: FunctionComponent<AssistantMessageProps> = (
             <RedHatIcon />
           </Icon>
         </SplitItem>
-        <SplitItem className="bubble pf-u-background-color-200 pf-u-font-size-sm">
-          <TextContent>
+        <SplitItem className="bubble pf-u-background-color-200">
+          <TextContent className="pf-u-font-size-sm">
             <ReactMarkdown>{message.content}</ReactMarkdown>
           </TextContent>
         </SplitItem>

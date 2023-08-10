@@ -14,7 +14,7 @@ export const FeedbackAssistantEntry: FunctionComponent<unknown> = () => {
           </Icon>
         </SplitItem>
         <SplitItem className="bubble pf-u-background-color-200 pf-u-text-nowrap pf-u-font-size-sm">
-          <TextContent>
+          <TextContent className="pf-u-font-size-sm">
             Are these results helpful?
             <Button variant="plain" className="pf-u-pr-xs pf-u-py-0">
               <ThumbsUpIcon />
