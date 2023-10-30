@@ -7,7 +7,6 @@ import { Button, InputGroup, InputGroupText, Split, SplitItem, Stack, StackItem,
 
 import TimesIcon from '@patternfly/react-icons/dist/esm/icons/times-icon';
 import PlaneIcon from '@patternfly/react-icons/dist/esm/icons/paper-plane-icon';
-import MinimizeIcon from '@patternfly/react-icons/dist/esm/icons/window-minimize-icon';
 
 import './landing-page.scss';
 import { From, MessageOption } from '../../types/Message';
