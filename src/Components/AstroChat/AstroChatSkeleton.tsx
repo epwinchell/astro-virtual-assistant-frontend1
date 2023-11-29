@@ -13,14 +13,14 @@ import {
   TextAreaReadOnlyVariant,
   TextContent,
 } from '@patternfly/react-core';
-import TimesIcon from '@patternfly/react-icons/dist/esm/icons/times-icon';
+import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-icon';
 import PlaneIcon from '@patternfly/react-icons/dist/esm/icons/paper-plane-icon';
 
 export const AstroChatSkeleton: React.FunctionComponent<unknown> = () => {
   return (
     <div>
       <Stack className="astro-l-stack">
-        <StackItem className="astro-l-stack__header pf-v5-pt-xs pf-v5-u-pb-sm">
+        <StackItem className="astro-l-stack__header pf-v5-pt-xs">
           <Split hasGutter>
             <SplitItem isFilled>
               <TextContent className="pf-v5-u-pt-md pf-v5-u-pl-lg pf-u-color-light-100 pf-v5-u-font-size-xl">
@@ -28,8 +28,13 @@ export const AstroChatSkeleton: React.FunctionComponent<unknown> = () => {
               </TextContent>
             </SplitItem>
             <SplitItem>
-              <Button variant="plain" aria-label="Close virtual assistant" className="pf-v5-u-p-md pf-v5-u-pl-sm pf-v5-u-color-light-100" isDisabled>
-                <TimesIcon />
+              <Button
+                variant="plain"
+                aria-label="Close virtual assistant"
+                className="astro-c-button-minimize pf-v5-u-p-md pf-v5-u-pl-sm pf-v5-u-color-light-100"
+                isDisabled
+              >
+                <AngleDownIcon />
               </Button>
             </SplitItem>
           </Split>

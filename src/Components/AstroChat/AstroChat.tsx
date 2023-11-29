@@ -1,6 +1,6 @@
 import React, { KeyboardEventHandler, useCallback, useLayoutEffect, useRef, useState } from 'react';
 import { Button, InputGroup, InputGroupText, Split, SplitItem, Stack, StackItem, Text, TextArea, TextContent } from '@patternfly/react-core';
-import TimesIcon from '@patternfly/react-icons/dist/esm/icons/times-icon';
+import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-icon';
 import { LoadingMessageEntry } from '../Message/LoadingMessageEntry';
 import { From, Message, MessageOption } from '../../types/Message';
 import { AssistantMessageEntry } from '../Message/AssistantMessageEntry';
@@ -60,7 +60,7 @@ export const AstroChat: React.FunctionComponent<AstroChatProps> = ({ messages, a
   return (
     <div ref={astroContainer}>
       <Stack className="astro-l-stack">
-        <StackItem className="astro-l-stack__header pf-v5-pt-xs pf-v5-u-pb-sm">
+        <StackItem className="astro-l-stack__header pf-v5-pt-xs">
           <Split hasGutter>
             <SplitItem isFilled>
               <TextContent className="pf-v5-u-pt-md pf-v5-u-pl-lg pf-u-color-light-100 pf-v5-u-font-size-xl">
@@ -71,10 +71,10 @@ export const AstroChat: React.FunctionComponent<AstroChatProps> = ({ messages, a
               <Button
                 variant="plain"
                 aria-label="Close virtual assistant"
-                className="pf-v5-u-p-md pf-v5-u-pl-sm pf-v5-u-color-light-100"
+                className="astro-c-button-minimize pf-v5-u-p-md pf-v5-u-pl-sm pf-v5-u-color-light-100"
                 onClick={onClose}
               >
-                <TimesIcon />
+                <AngleDownIcon />
               </Button>
             </SplitItem>
           </Split>

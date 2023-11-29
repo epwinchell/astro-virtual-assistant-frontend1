@@ -4,7 +4,7 @@ const ChatBotIcon = () => {
   return (
     <svg width="34" height="34" viewBox="0 0 38 38">
       <defs>
-        <style>{`.st0{fill:#690609;}`}</style>
+        <style>{`.st0{fill:#A30000;}`}</style>
       </defs>
       <path
         className="st0"

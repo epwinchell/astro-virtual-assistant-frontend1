@@ -1,5 +1,17 @@
-.astro__badge {
+.astro-c-button-badge {
+  background: var(--pf-v5-global--palette--red-200);
+  border-radius: 5px;
+  height: 50px;
+  margin-top: var(--pf-global--spacer--xl);
+  padding: 6px;
   width: 50px;
+  &:hover {
+    background: var(--pf-v5-global--palette--red-300);
+  }
+}
+
+.astro__badge {
+  width: 100%;
 }
 
 .astro-l-stack {
@@ -7,9 +19,12 @@
   height: 550px;
   overflow: hidden;
   &__header {
-    background: url(../../assets/header-background-01.svg) var(--pf-v5-global--palette--red-300);
+    background: url(../../assets/header-background-01.svg) var(--pf-v5-global--palette--red-200);
     background-repeat: no-repeat;
     background-position: 75% 0%;
+    .astro-c-button-minimize {
+      font-size: 24px;
+    }
   }
   &__body {
     overflow-y: scroll;
@@ -40,8 +55,8 @@
       height: 60px;
     }
     .pf-c-form-control {
-      --pf-c-form-control--focus--BorderBottomColor: var(--pf-v5-global--BackgroundColor--dark-400);
-      --pf-c-form-control--hover--BorderBottomColor: var(--pf-v5-global--BackgroundColor--dark-400);
+      --pf-c-form-control--focus--BorderBottomColor: var(--pf-v5-global--palette--red-200);
+      --pf-c-form-control--hover--BorderBottomColor: var(--pf-v5-global--palette--red-200);
       border-bottom-width: 1px;
       resize: none;
      }
@@ -50,12 +65,12 @@
     }
     :focus-visible {
       outline: none;
-      box-shadow: 0 -3px 0 var(--pf-v5-global--palette--red-300);
+      box-shadow: 0 -3px 0 var(--pf-v5-global--palette--red-200);
     }
     .pf-c-button {
       border-bottom: 2px solid var(--pf-v5-global--BackgroundColor--100);
       &:hover {
-        border-bottom: 3px solid var(--pf-v5-global--palette--red-300);
+        border-bottom: 3px solid var(--pf-v5-global--palette--red-200);
       }
     }
   }
