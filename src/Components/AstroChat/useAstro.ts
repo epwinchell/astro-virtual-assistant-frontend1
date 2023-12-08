@@ -1,11 +1,12 @@
+import { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { produce } from 'immer';
 import { AssistantMessage, FeedbackMessage, From, Message } from '../../types/Message';
 import { PostTalkResponse, postTalk } from '../../api/PostTalk';
-import { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { asyncSleep } from '../../utils/Async';
 import Config from '../../Config';
 import { MessageProcessor } from '../Message/MessageProcessor';
 import { Command } from '../../types/Command';
+import { buildMetadata } from '../../utils/Metadata';
 
 type SetMessages = Dispatch<SetStateAction<Array<Message>>>;
 
@@ -125,7 +126,7 @@ export const useAstro = (messageProcessors: Array<MessageProcessor>) => {
           );
         }
 
-        const postTalkResponse = postTalk(message);
+        const postTalkResponse = postTalk(message, buildMetadata());
 
         const waitResponses = async () => {
           if (options?.hideResponse) {
