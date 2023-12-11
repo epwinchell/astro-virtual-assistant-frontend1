@@ -115,9 +115,15 @@ export const enum Status {
 export const useAstro = (messageProcessors: Array<MessageProcessor>) => {
   const [messages, setMessages] = useState<Array<Message>>([]);
   const [status, setStatus] = useState<Status>(Status.NOT_STARTED);
+  const [loadingResponse, setLoadingResponse] = useState<boolean>(false);
 
   const ask = useCallback(
     async (message: string, options?: Partial<AskOptions>) => {
+      if (loadingResponse) {
+        return;
+      }
+
+      setLoadingResponse(true);
       const validOptions: AskOptions = {
         ...{
           hideMessage: false,
@@ -164,13 +170,14 @@ export const useAstro = (messageProcessors: Array<MessageProcessor>) => {
 
         if (validOptions.waitResponses) {
           await waitResponses();
+          setLoadingResponse(false);
         } else {
-          void waitResponses();
+          waitResponses().then(() => setLoadingResponse(false));
           await postTalkResponse;
         }
       }
     },
-    [messageProcessors]
+    [messageProcessors, loadingResponse]
   );
 
   const start = useCallback(async () => {
@@ -205,5 +212,6 @@ export const useAstro = (messageProcessors: Array<MessageProcessor>) => {
     start,
     stop,
     status,
+    loadingResponse,
   };
 };
