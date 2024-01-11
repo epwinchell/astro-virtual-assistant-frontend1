@@ -17,7 +17,7 @@ const finishConversation = (): void => {
   // TODO: finish conversation; load banner
 };
 
-export const commandMessageProcessor: MessageProcessor = async (message) => {
+export const commandMessageProcessor: MessageProcessor = async (message, options) => {
   if (message.from === From.ASSISTANT && message.command) {
     switch (message.command.type) {
       case CommandType.FINISH_CONVERSATION:
@@ -30,6 +30,9 @@ export const commandMessageProcessor: MessageProcessor = async (message) => {
         break;
       case CommandType.TOUR_START:
         startPendoTour('tourId');
+        break;
+      case CommandType.FEEDBACK_MODAL:
+        options.toggleFeedbackModal(true);
         break;
       case CommandType.FEEDBACK:
         await feedbackCommandProcessor(message.command);

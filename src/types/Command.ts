@@ -2,6 +2,7 @@ export enum CommandType {
   REDIRECT = 'redirect',
   FINISH_CONVERSATION = 'core_finish_conversation',
   TOUR_START = 'tour_start',
+  FEEDBACK_MODAL = 'feedback_modal',
   FEEDBACK = 'feedback',
 }
 
@@ -25,6 +26,10 @@ export interface TourStartCommand extends BaseCommand {
   type: CommandType.TOUR_START;
 }
 
+export interface FeedbackModalCommand extends BaseCommand {
+  type: CommandType.FEEDBACK_MODAL;
+}
+
 export interface FeedbackCommand extends BaseCommand {
   type: CommandType.FEEDBACK;
   params: {
@@ -34,4 +39,4 @@ export interface FeedbackCommand extends BaseCommand {
   };
 }
 
-export type Command = FinishConversationCommand | RedirectCommand | TourStartCommand | FeedbackCommand;
+export type Command = FinishConversationCommand | RedirectCommand | TourStartCommand | FeedbackCommand | FeedbackModalCommand;

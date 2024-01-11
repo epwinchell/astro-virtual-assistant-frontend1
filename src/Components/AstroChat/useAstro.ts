@@ -1,10 +1,13 @@
 import { Dispatch, SetStateAction, useCallback, useState } from 'react';
 import { original, produce } from 'immer';
+
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
+
 import { AssistantMessage, FeedbackMessage, From, Message } from '../../types/Message';
 import { PostTalkResponse, postTalk } from '../../api/PostTalk';
 import { asyncSleep } from '../../utils/Async';
 import Config from '../../Config';
-import { MessageProcessor } from '../Message/MessageProcessor';
+import { MessageProcessor, MessageProcessorOptions } from '../Message/MessageProcessor';
 import { v4 as uuidv4 } from 'uuid';
 import { Command } from '../../types/Command';
 import { buildMetadata } from '../../utils/Metadata';
@@ -19,7 +22,8 @@ const loadMessage = async (
   content: Promise<PostTalkResponse> | PostTalkResponse | string | undefined,
   setMessages: SetMessages,
   minTimeout: number,
-  processors: Array<MessageProcessor>
+  processors: Array<MessageProcessor>,
+  options: MessageProcessorOptions
 ) => {
   const messageId = uuidv4();
   setMessages(
@@ -69,7 +73,7 @@ const loadMessage = async (
       }
     }
 
-    await messageProcessor(message, processors);
+    await messageProcessor(message, processors, options);
 
     setMessages(
       produce((draft) => {
@@ -93,9 +97,13 @@ const loadMessage = async (
   }
 };
 
-const messageProcessor = async (message: AssistantMessage | FeedbackMessage, processors: Array<MessageProcessor>) => {
+const messageProcessor = async (
+  message: AssistantMessage | FeedbackMessage,
+  processors: Array<MessageProcessor>,
+  options: MessageProcessorOptions
+) => {
   for (const processor of processors) {
-    await processor(message);
+    await processor(message, options);
   }
 };
 
@@ -116,6 +124,8 @@ export const useAstro = (messageProcessors: Array<MessageProcessor>) => {
   const [messages, setMessages] = useState<Array<Message>>([]);
   const [status, setStatus] = useState<Status>(Status.NOT_STARTED);
   const [loadingResponse, setLoadingResponse] = useState<boolean>(false);
+
+  const { toggleFeedbackModal } = useChrome();
 
   const ask = useCallback(
     async (message: string, options?: Partial<AskOptions>) => {
@@ -153,18 +163,30 @@ export const useAstro = (messageProcessors: Array<MessageProcessor>) => {
             return;
           }
 
+          const messageProcessorOptions = {
+            toggleFeedbackModal,
+          };
+
           await loadMessage(
             From.ASSISTANT,
             postTalkResponse.then((r) => r[0]),
             setMessages,
             Config.messages.delays.minAssistantResponse,
-            messageProcessors
+            messageProcessors,
+            messageProcessorOptions
           );
 
           // responses has already been resolved
           const responses = await postTalkResponse;
           for (let i = 1; i < responses.length; i++) {
-            await loadMessage(From.ASSISTANT, responses[i], setMessages, Config.messages.delays.minAssistantResponse, messageProcessors);
+            await loadMessage(
+              From.ASSISTANT,
+              responses[i],
+              setMessages,
+              Config.messages.delays.minAssistantResponse,
+              messageProcessors,
+              messageProcessorOptions
+            );
           }
         };
 
