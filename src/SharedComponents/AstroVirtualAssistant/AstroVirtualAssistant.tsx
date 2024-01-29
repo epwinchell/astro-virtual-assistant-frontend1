@@ -18,7 +18,8 @@ const messageProcessors = [commandMessageProcessor];
 
 export const AstroVirtualAssistant: FunctionComponent = () => {
   const { messages, setMessages, ask, start, status, loadingResponse } = useAstro(messageProcessors);
-  const [isOpen, setOpen] = useState<boolean>();
+  const [isOpen, setOpen] = useState<boolean>(false);
+  const [isFullScreen, setFullScreen] = useState<boolean>(false);
   const [sessionStatus, setSessionStatus] = useState<SessionStatus>();
   const chrome = useChrome();
 
@@ -53,6 +54,8 @@ export const AstroVirtualAssistant: FunctionComponent = () => {
             blockInput={loadingResponse}
             preview={chrome.isBeta()}
             onClose={() => setOpen(false)}
+            fullscreen={isFullScreen}
+            setFullScreen={setFullScreen}
           />
         )}
         {status === Status.LOADING && isOpen && <AstroChatSkeleton />}
