@@ -12,6 +12,7 @@ const config = {
       },
     },
   },
+  waitBeforeFirstVisitDisplay: 3000,
 };
 
 const readonlyConfig: Readonly<typeof config> = config;
