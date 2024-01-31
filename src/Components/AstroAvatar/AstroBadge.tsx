@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Tooltip } from '@patternfly/react-core';
 import BubbleIcon from '../../assets/badge-icon.svg';
+import './AstroBadge.scss';
 
 interface AstroAvatarProps {
   onClick: () => void;
