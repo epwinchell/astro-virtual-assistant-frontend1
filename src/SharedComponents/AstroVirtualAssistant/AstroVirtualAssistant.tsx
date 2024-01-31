@@ -5,6 +5,7 @@ import { Stack, StackItem } from '@patternfly/react-core';
 
 import { Status, useAstro } from '../../Components/AstroChat/useAstro';
 import './astro-virtual-assistant.scss';
+import './animation.scss';
 import { AstroChat } from '../../Components/AstroChat/AstroChat';
 import { AstroBadge } from '../../Components/AstroAvatar/AstroBadge';
 import { AstroChatSkeleton } from '../../Components/AstroChat/AstroChatSkeleton';
