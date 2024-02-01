@@ -1,18 +1,16 @@
 import React, { Dispatch, KeyboardEventHandler, SetStateAction, useCallback, useLayoutEffect, useRef, useState } from 'react';
 import {
   Button,
+  Card,
+  CardActions,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  CardTitle,
   InputGroup,
   InputGroupText,
-  Split,
-  SplitItem,
-  Stack,
-  StackItem,
-  Text,
   TextArea,
-  TextContent,
-  Toolbar,
-  ToolbarGroup,
-  ToolbarItem,
+  Title,
 } from '@patternfly/react-core';
 import { original, produce } from 'immer';
 import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-icon';
@@ -68,7 +66,7 @@ export const AstroChat: React.FunctionComponent<AstroChatProps> = ({
 
   useLayoutEffect(() => {
     if (astroContainer.current) {
-      const messageContainer = astroContainer.current.querySelector('.astro-l-stack__body');
+      const messageContainer = astroContainer.current.querySelector('.astro-c-card__body');
       if (messageContainer) {
         messageContainer.scrollTo(0, messageContainer.scrollHeight);
       }
@@ -109,34 +107,25 @@ export const AstroChat: React.FunctionComponent<AstroChatProps> = ({
       }
     }
   };
-
   return (
     <div ref={astroContainer}>
-      <Stack className={`astro-l-stack ${fullscreen ? 'astro-l-stack-full-screen' : ''}`}>
-        <StackItem className="astro-l-stack__header pf-v5-u-py-md">
-          <Split hasGutter>
-            <SplitItem isFilled>
-              <TextContent className="pf-v5-u-pl-lg pf-u-color-light-100 pf-v5-u-font-size-xl">
-                <Text>Virtual Assistant</Text>
-              </TextContent>
-            </SplitItem>
-            <SplitItem>
-              <ToolbarGroup variant="icon-button-group">
-                <ToolbarItem>
-                  <Button variant="plain" aria-label="Full screen" onClick={() => setFullScreen(!fullscreen)} className="pf-v5-u-color-light-100">
-                    {fullscreen ? <CompressAltIcon /> : <ExpandAltIcon />}
-                  </Button>
-                </ToolbarItem>
-                <ToolbarItem>
-                  <Button variant="plain" aria-label="Close virtual assistant" onClick={onClose} className="pf-v5-u-color-light-100">
-                    <AngleDownIcon />
-                  </Button>
-                </ToolbarItem>
-              </ToolbarGroup>
-            </SplitItem>
-          </Split>
-        </StackItem>
-        <StackItem className="astro-l-stack__body pf-v5-u-px-md pf-v5-u-pt-xl pf-v5-m-scrollable pf-v5-u-background-color-100" isFilled>
+      <Card className={`astro-c-card ${fullscreen ? 'astro-c-card-full-screen' : ''}`}>
+        <CardHeader className="astro-c-card__header">
+          <CardActions>
+            <Button variant="plain" aria-label="Full screen" onClick={() => setFullScreen(!fullscreen)} className="pf-v5-u-color-light-100">
+              {fullscreen ? <CompressAltIcon /> : <ExpandAltIcon />}
+            </Button>
+            <Button variant="plain" aria-label="Close virtual assistant" onClick={onClose} className="pf-v5-u-color-light-100">
+              <AngleDownIcon />
+            </Button>
+          </CardActions>
+          <CardTitle>
+            <Title headingLevel="h4" size="lg" className="pf-u-color-light-100">
+              Virtual Assistant
+            </Title>
+          </CardTitle>
+        </CardHeader>
+        <CardBody className="astro-c-card__body pf-v5-u-px-md pf-v5-u-pt-xl pf-v5-m-scrollable pf-v5-u-background-color-100">
           {messages.map((message, index) => {
             if ('isLoading' in message && message.isLoading) {
               return <LoadingMessageEntry key={index} />;
@@ -157,8 +146,9 @@ export const AstroChat: React.FunctionComponent<AstroChatProps> = ({
                 return <ThumbsMessageEntry ask={askFromOption} blockInput={blockInput} />;
             }
           })}
-        </StackItem>
-        <StackItem className="astro-l-stack__footer">
+        </CardBody>
+
+        <CardFooter className="astro-c-card__footer pf-v5-u-p-0">
           <InputGroup>
             <TextArea
               value={input}
@@ -176,8 +166,8 @@ export const AstroChat: React.FunctionComponent<AstroChatProps> = ({
               </Button>
             </InputGroupText>
           </InputGroup>
-        </StackItem>
-      </Stack>
+        </CardFooter>
+      </Card>
     </div>
   );
 };
