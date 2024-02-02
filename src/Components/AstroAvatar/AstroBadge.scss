@@ -1,0 +1,13 @@
+.astro-c-button-badge {
+  background: var(--pf-v5-global--palette--red-200);
+  border-radius: 5px;
+  height: 50px;
+  padding: 6px;
+  width: 50px;
+  &:hover {
+    background: var(--pf-v5-global--palette--red-300);
+  }
+  .astro__badge {
+    width: 100%;
+  }
+}
