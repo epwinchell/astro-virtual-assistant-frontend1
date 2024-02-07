@@ -46,14 +46,7 @@ export const AstroChatSkeleton: React.FunctionComponent<unknown> = () => {
         </CardBody>
         <CardFooter className="astro-c-card__footer pf-v5-u-p-0">
           <InputGroup>
-            <TextArea
-              placeholder="Type a message..."
-              name="user-query"
-              type="text"
-              aria-label="User question"
-              className="pf-v5-u-pt-md pf-v5-u-pl-md"
-              readOnlyVariant="plain"
-            />
+            <TextArea placeholder="Type a message..." name="user-query" type="text" aria-label="User question" readOnlyVariant="plain" />
             <InputGroupText id="username">
               <Button isDisabled variant="plain" className="pf-v5-u-px-sm">
                 <PlaneIcon />
