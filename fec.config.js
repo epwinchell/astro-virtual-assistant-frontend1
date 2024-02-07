@@ -33,5 +33,5 @@ module.exports = {
   },
   plugins: [],
   sassPrefix: '.virtualAssistant',
-  _unstableHotReload: process.env.HOT === 'true',
+  hotReload: process.env.HOT === 'true',
 };

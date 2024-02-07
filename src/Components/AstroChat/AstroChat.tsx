@@ -1,17 +1,5 @@
 import React, { Dispatch, KeyboardEventHandler, SetStateAction, useCallback, useLayoutEffect, useRef, useState } from 'react';
-import {
-  Button,
-  Card,
-  CardActions,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-  InputGroup,
-  InputGroupText,
-  TextArea,
-  Title,
-} from '@patternfly/react-core';
+import { Button, Card, CardBody, CardFooter, CardHeader, CardTitle, InputGroup, InputGroupText, TextArea, Title } from '@patternfly/react-core';
 import { original, produce } from 'immer';
 import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-icon';
 import { LoadingMessageEntry } from '../Message/LoadingMessageEntry';
@@ -83,7 +71,7 @@ export const AstroChat: React.FunctionComponent<AstroChatProps> = ({
     [ask]
   );
 
-  const onChange = useCallback((value: string) => {
+  const onChange = useCallback((_event: unknown, value: string) => {
     removeEndConversationBanner();
     if (value === '\n') {
       return;
@@ -110,15 +98,21 @@ export const AstroChat: React.FunctionComponent<AstroChatProps> = ({
   return (
     <div ref={astroContainer}>
       <Card className={`astro-c-card ${fullscreen ? 'astro-c-card-full-screen' : ''}`}>
-        <CardHeader className="astro-c-card__header">
-          <CardActions>
-            <Button variant="plain" aria-label="Full screen" onClick={() => setFullScreen(!fullscreen)} className="pf-v5-u-color-light-100">
-              {fullscreen ? <CompressAltIcon /> : <ExpandAltIcon />}
-            </Button>
-            <Button variant="plain" aria-label="Close virtual assistant" onClick={onClose} className="pf-v5-u-color-light-100">
-              <AngleDownIcon />
-            </Button>
-          </CardActions>
+        <CardHeader
+          className="astro-c-card__header"
+          actions={{
+            actions: (
+              <>
+                <Button variant="plain" aria-label="Full screen" onClick={() => setFullScreen(!fullscreen)} className="pf-v5-u-color-light-100">
+                  {fullscreen ? <CompressAltIcon /> : <ExpandAltIcon />}
+                </Button>
+                <Button variant="plain" aria-label="Close virtual assistant" onClick={onClose} className="pf-v5-u-color-light-100">
+                  <AngleDownIcon />
+                </Button>
+              </>
+            ),
+          }}
+        >
           <CardTitle>
             <Title headingLevel="h4" size="lg" className="pf-u-color-light-100">
               Virtual Assistant
@@ -158,7 +152,6 @@ export const AstroChat: React.FunctionComponent<AstroChatProps> = ({
               name="user-query"
               type="text"
               aria-label="User question"
-              className="pf-v5-u-pt-md pf-v5-u-pl-md"
             />
             <InputGroupText id="username">
               <Button onClick={onAskPressed} isDisabled={input.trim() === '' || blockInput} variant="plain" className="pf-v5-u-px-sm">

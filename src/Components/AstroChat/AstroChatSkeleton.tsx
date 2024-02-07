@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Button,
   Card,
-  CardActions,
   CardBody,
   CardFooter,
   CardHeader,
@@ -10,9 +9,7 @@ import {
   InputGroup,
   InputGroupText,
   Skeleton,
-  Text,
   TextArea,
-  TextAreaReadOnlyVariant,
   Title,
 } from '@patternfly/react-core';
 import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-icon';
@@ -23,34 +20,33 @@ export const AstroChatSkeleton: React.FunctionComponent<unknown> = () => {
   return (
     <div>
       <Card className="astro-c-card">
-        <CardHeader className="astro-c-card__header">
+        <CardHeader
+          className="astro-c-card__header"
+          actions={{
+            actions: (
+              <>
+                <Button variant="plain" aria-label="Full screen" className="pf-v5-u-color-light-100">
+                  <ExpandAltIcon />
+                </Button>
+                <Button variant="plain" aria-label="Close virtual assistant" className="pf-v5-u-color-light-100">
+                  <AngleDownIcon />
+                </Button>
+              </>
+            ),
+          }}
+        >
           <CardTitle>
             <Title headingLevel="h4" size="lg" className="pf-u-color-light-100">
               Virtual Assistant
             </Title>
           </CardTitle>
-          <CardActions>
-            <Button variant="plain" aria-label="Full screen" className="pf-v5-u-color-light-100">
-              <ExpandAltIcon />
-            </Button>
-            <Button variant="plain" aria-label="Close virtual assistant" className="pf-v5-u-color-light-100">
-              <AngleDownIcon />
-            </Button>
-          </CardActions>
         </CardHeader>
         <CardBody className="astro-c-card__body pf-v5-u-px-md pf-v5-u-pt-xl pf-v5-m-scrollable pf-v5-u-background-color-100">
           <Skeleton width="80%" />
         </CardBody>
         <CardFooter className="astro-c-card__footer pf-v5-u-p-0">
           <InputGroup>
-            <TextArea
-              placeholder="Type a message..."
-              name="user-query"
-              type="text"
-              aria-label="User question"
-              className="pf-v5-u-pt-md pf-v5-u-pl-md"
-              readOnlyVariant={TextAreaReadOnlyVariant.plain}
-            />
+            <TextArea placeholder="Type a message..." name="user-query" type="text" aria-label="User question" readOnlyVariant="plain" />
             <InputGroupText id="username">
               <Button isDisabled variant="plain" className="pf-v5-u-px-sm">
                 <PlaneIcon />
