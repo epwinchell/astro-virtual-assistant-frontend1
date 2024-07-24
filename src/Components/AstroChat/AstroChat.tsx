@@ -126,7 +126,7 @@ export const AstroChat: React.FunctionComponent<AstroChatProps> = ({
     <div ref={astroContainer} className={fullscreen ? 'pf-v5-c-card-full-screen' : ''}>
       <VirtualAssistant
         title="Virtual Assistant"
-        inputPlaceholder="Type a message..."
+        inputPlaceholder="Send a message..."
         message={input}
         onChangeMessage={onChange}
         onSendMessage={onAskPressed}
